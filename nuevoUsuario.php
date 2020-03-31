@@ -6,23 +6,35 @@
  <body>
   <form method="post" action="">
    <input type="text" name="user"/>
-   <input type="password" name="pass"/>       
-   <input type="password" name="tipo"/>
-   <input type="number" name="depa"/>
-   <input type="number" name="cede"/>
-   <textarea rows="5" cols="20" name="sede"></textarea>
-   <input type="submit" name="reg"/>
+   <input type="text" name="pass"/>       
+   <input type="text" name="tipo"/>
+   <input type="text" name="depa"/>
+   <input type="text" name="sede"/>
+   
+   <input type="submit" class="button" name="insert" value="insert" />
+   <input type="submit" class="button" name="select" value="select" />
+   
   </form>
 <?php  
-  $con = mysql_connect("localhost","root","");
-  if(!$con){
-    die('No se conecto: '.mysql_error());
-  }
-  mysql_select_db("carnes", $con);
-  
+//require 'funcionesUsuario.php';
 
-      
-     
+/*$link = mysqli_connect("localhost", "root", "", "demo");
+
+
+function insertar(){
+  if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $user = $_POST['user'];
+    $pass = $_POST['pass'];
+    $tipo = $_POST['tipo'];
+    $depa = $_POST['depa'];
+    $sede = $_POST['sede'];
+  
+    $sql="INSERT INTO 'usuario' ('usu_user', 'usu_pass', 'usu_tipo', 'usu_depa', `usu_sede`) 
+    VALUES ('$user','$pass','$tipo','$depa','$sede')";
+  }
+}*/
+
+    
 ?>
 </body>
 </html>
