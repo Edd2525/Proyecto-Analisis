@@ -1,6 +1,6 @@
 <?php
 
-	$mysqli = new mysqli('localhost', 'root', '', 'horse');
+	$mysqli = new mysqli('localhost', 'root', '', 'carnes');
 
 	if($mysqli->connect_error){
 

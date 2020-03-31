@@ -1,25 +1,25 @@
 <?php
 session_start();
 require 'conexion.php';
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-      $myusername = $_POST['username'];
-      $mypassword = $_POST['pass'];
-	$encryptedPass = md5($mypassword);
-      $sql = "SELECT id FROM login WHERE username = '$myusername' and password = '$encryptedPass'";
-      $result = $mysqli->query($sql);
-      $row = $result->fetch_array(MYSQLI_ASSOC);
-      
-      $count = mysqli_num_rows($result);
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+  $myusername = $_POST['username'];
+  $mypassword = $_POST['pass'];
+  /* Select queries return a resultset */
+  if ($result = $mysqli->query("SELECT * FROM usuario WHERE usu_user = '$myusername' and usu_pass = '$mypassword' ")) {
+    if($result->num_rows == 1){
+      //guardar username aqui
 
-      if($count == 1) {
-         $_SESSION['login_user'] = $myusername;
-         
-         header("location: dashboard.html");
-      }else {
-		$error = TRUE;
-      }
-   }
+      header("location: dashboard.html");
+    }else{
+      printf("Fallo");
+    }
+    
+    //$result->
+    /* free result set */
+    $result->close();
+  }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,14 +35,14 @@ require 'conexion.php';
     <!-- Icon -->
     <div class="fadeIn first">
       <h2 class="active">Sistema de Control</h2>
-      <h1>Endurance Costa Rica</h1>
+      <h1>Inicio de Sesion</h1>
     </div>
 
     <!-- Login Form -->
     <form method="POST" onsubmit="return error();">
       <input type="text" id="login" class="fadeIn second" name="username" placeholder="Usuario">
       <input type="password" id="password" class="fadeIn third" name="pass" placeholder="Contraseña">
-      <input type="submit" class="fadeIn fourth" value="Log In">
+      <input type="submit" class="fadeIn fourth" value="Ingresar">
     </form>
 
     <!-- Remind Passowrd -->
