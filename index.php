@@ -8,9 +8,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   if ($result = $mysqli->query("SELECT * FROM usuario WHERE usu_user = '$myusername' and usu_pass = '$mypassword' ")) {
     if($result->num_rows == 1){
       //guardar username aqui
-
+      //avisar que entro correctamente
       header("location: dashboard.html");
     }else{
+      //poner mensaje de error
       printf("Fallo");
     }
     
