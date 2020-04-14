@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-03-2020 a las 23:32:12
+-- Tiempo de generación: 14-04-2020 a las 16:42:07
 -- Versión del servidor: 10.4.7-MariaDB
 -- Versión de PHP: 7.4.2
 
@@ -33,6 +33,16 @@ CREATE TABLE `asignacion` (
   `emp_id` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `asignacion`
+--
+
+INSERT INTO `asignacion` (`usu_user`, `emp_id`) VALUES
+('admin', '1'),
+('admin', '123123'),
+('smadmin', '2'),
+('smadmin', '3');
+
 -- --------------------------------------------------------
 
 --
@@ -45,6 +55,16 @@ CREATE TABLE `empleado` (
   `emp_ape` varchar(30) NOT NULL,
   `emp_hora` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `empleado`
+--
+
+INSERT INTO `empleado` (`emp_id`, `emp_nom`, `emp_ape`, `emp_hora`) VALUES
+('1', 'Juan', 'Perez', 1),
+('123123', 'Raul', 'Vargas', 1),
+('2', 'Diego', 'Arce', 0),
+('3', 'Susana', 'Perez', 1);
 
 -- --------------------------------------------------------
 
@@ -86,8 +106,16 @@ CREATE TABLE `usuario` (
   `usu_pass` varchar(30) NOT NULL,
   `usu_tipo` tinyint(1) NOT NULL,
   `usu_depa` varchar(30) NOT NULL,
-  `usu_cede` varchar(30) NOT NULL
+  `usu_sede` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`usu_user`, `usu_pass`, `usu_tipo`, `usu_depa`, `usu_sede`) VALUES
+('admin', 'admin', 0, 'Depa 1', 'Sede 1'),
+('smadmin', 'smadmin2', 1, 'Depa 2', 'Sede 2');
 
 --
 -- Índices para tablas volcadas

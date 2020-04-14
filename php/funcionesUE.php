@@ -15,16 +15,19 @@ function tablaUE($datos){
     while($fila = $datos->fetch_object()){
         echo "<tr>";
         echo "<td>";
+        echo $fila->usu_user;
+        echo "</td>";
+        echo "<td>";
         echo $fila->emp_id;
         echo "</td>";
         echo "<td>";
         echo $fila->emp_nom;
         echo "</td>";
         echo "<td>";
-        echo $fila->emp_ape;
+        echo $fila->usu_depa;
         echo "</td>";
         echo "<td>";
-        echo $fila->emp_hora;
+        echo $fila->usu_sede;
         echo "</td>";
         echo "</tr>";
     }
@@ -33,7 +36,9 @@ function tablaUE($datos){
 function cargarTablaUE(){
     if($conexion=conecatarBaseUE()){
     //echo "Aquí haríamos el resto de operaciones...";
-    $sql= "SELECT * FROM empleado";
+    $sql= "SELECT * FROM asignacion 
+    INNER JOIN empleado ON asignacion.emp_id = empleado.emp_id
+    INNER JOIN usuario on asignacion.usu_user = usuario.usu_user";
     $datos = $conexion->query($sql);
     if (mysqli_num_rows($datos)>0){
         tablaUE($datos);
@@ -46,11 +51,11 @@ function cargarTablaUE(){
     }
 }
 
-function insertarUE($id,$nom){
+function insertarUE($usu,$id){
     if($conexion=conecatarBaseUE()){
         //echo "Aquí haríamos el resto de operaciones...";
-        $sql= "INSERT INTO empleado (emp_id, emp_nom, emp_ape, emp_hora) 
-        VALUES ('$id', '$nom', '$ape','$hora')";
+        $sql= "INSERT INTO asignacion (usu_user, emp_id) 
+        VALUES ('$usu', '$id')";
         if ($conexion->query($sql)===true){
             echo "<p>Se agrego correctamente</p>";
         } else {
@@ -61,7 +66,7 @@ function insertarUE($id,$nom){
     }
 }
 
-function buscarUE($id){
+/*function buscarUE($id){
     if($conexion=conecatarBase()){
         $sql= "SELECT *  FROM emppleado WHERE emp_id = '$id'";
         $datos = $conexion->query($sql);
@@ -75,11 +80,11 @@ function buscarUE($id){
     }else {
         echo "<p>Servicio interrumpido</p>";
     }
-}
+}*/
 
-function deleteUE($id){
+function deleteUE($usu, $id){
     if($conexion=conecatarBaseUE()){
-        $sql= "DELETE FROM empleado WHERE emp_id = '$id'";
+        $sql= "DELETE FROM asignacion WHERE usu_user = '$usu' AND emp_id = '$id'";
         $datos = $conexion->query($sql);
         if ($datos === true){
             echo "<p>Borrados</p>";

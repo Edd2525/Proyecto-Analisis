@@ -2,6 +2,13 @@
     include ("php/funcionesEmpleado.php");
     include ("php/funcionesUsuario.php");
     include ("php/funcionesUE.php");
+
+    if(array_key_exists('guardar', $_POST)) { 
+        insertarUE($_POST['c1'],$_POST['c2']); 
+    } 
+    if(array_key_exists('borrar', $_POST)) { 
+        deleteUE($_POST['c1'],$_POST['c2']); 
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,6 +40,7 @@
             cargarTablaUsu();
         ?>
     </table>
+    <br>
     <table>
         <tr>
             <th>ID</th>
@@ -44,10 +52,14 @@
             cargarTablaEmp();
         ?>
     </table>
+    <br>
     <table>
         <tr>
             <th>Usuario</th>
-            <th>Empleado</th>
+            <th>Empleado ID</th>
+            <th>Empleado NOM</th>
+            <th>Depa</th>
+            <th>Sede</th>
         </tr>
         <?php
             cargarTablaUE();
